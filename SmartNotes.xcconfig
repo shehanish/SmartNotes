@@ -1,0 +1,10 @@
+// Device-specific signing workaround
+// This config file bypasses the problematic certificate chain verification
+
+// For physical device builds, use minimal signing
+iphoneos*:CODE_SIGN_IDENTITY = Apple Development: shehani9093@gmail.com (53Y82KBNZ2)
+iphoneos*:CODE_SIGN_STYLE = Manual
+iphoneos*:PROVISIONING_PROFILE_SPECIFIER = iOS Team Provisioning Profile: Hello.SmartNotes
+
+// For simulator, use automatic
+iphonesimulator*:CODE_SIGN_STYLE = Automatic
