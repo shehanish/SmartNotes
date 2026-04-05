@@ -11,56 +11,54 @@ struct LandingPageView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Background gradient
-                LinearGradient(
-                    colors: [Color(red: 0.1, green: 0.1, blue: 0.35), .purple],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing)
+                // Light blue background
+                Color(red: 0.92, green: 0.95, blue: 0.98)
                     .ignoresSafeArea()
 
                 VStack(spacing: 24) {
                     Spacer()
 
-                    // App icon
+                    // App icon - clean and minimal
                     ZStack {
                         Circle()
-                            .fill(.white.opacity(0.15))
+                            .fill(Color(red: 0.2, green: 0.4, blue: 0.7).opacity(0.1))
                             .frame(width: 110, height: 110)
-                        Image(systemName: "headphones")
-                            .font(.system(size: 52, weight: .medium))
-                            .foregroundStyle(.white)
+                        Image(systemName: "headphones.circle.fill")
+                            .font(.system(size: 60))
+                            .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.7))
                     }
 
                     // Title and badge
                     VStack(spacing: 8) {
                         Text("SmartNotes")
-                            .font(.system(size: 38, weight: .bold))
-                            .foregroundStyle(.white)
+                            .font(.system(size: 36, weight: .semibold))
+                            .tracking(0.3)
+                            .foregroundStyle(Color(red: 0.1, green: 0.1, blue: 0.15))
 
-                        Text("Podcast · AI Summaries")
-                            .font(.caption)
-                            .fontWeight(.semibold)
-                            .foregroundStyle(.white)
+                        Text("Podcast summaries made simple")
+                            .font(.subheadline)
+                            .fontWeight(.regular)
+                            .foregroundStyle(Color.gray)
                             .padding(.horizontal, 14)
                             .padding(.vertical, 6)
-                            .background(.white.opacity(0.2))
+                            .background(Color.white)
                             .clipShape(Capsule())
                     }
 
                     // Tagline
-                    Text("Listen to any podcast and get\nAI-powered highlights & notes.")
-                        .font(.title3)
+                    Text("Listen, summarize, and save notes\nfrom your favorite podcasts.")
+                        .font(.body)
                         .multilineTextAlignment(.center)
-                        .foregroundStyle(.white.opacity(0.85))
+                        .foregroundStyle(Color(red: 0.3, green: 0.3, blue: 0.35))
                         .padding(.horizontal, 32)
 
                     Spacer()
 
                     // Feature bullets
                     VStack(spacing: 16) {
-                        FeatureBullet(icon: "waveform",   text: "Stream podcasts instantly")
-                        FeatureBullet(icon: "sparkles",   text: "AI-generated episode summaries")
-                        FeatureBullet(icon: "note.text",  text: "Save highlights as smart notes")
+                        FeatureBullet(icon: "waveform",   text: "Stream any podcast")
+                        FeatureBullet(icon: "doc.text.fill",   text: "Instant summaries")
+                        FeatureBullet(icon: "bookmark.fill",  text: "Save important notes")
                     }
                     .padding(.horizontal, 40)
 
@@ -70,17 +68,17 @@ struct LandingPageView: View {
                     NavigationLink(destination: HomeView()) {
                         Text("Get Started")
                             .font(.headline)
-                            .foregroundStyle(Color(red: 0.1, green: 0.1, blue: 0.35))
+                            .foregroundStyle(.white)
                             .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
-                            .background(.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                            .padding(.vertical, 14)
+                            .background(Color(red: 0.2, green: 0.4, blue: 0.7))
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
                             .padding(.horizontal, 32)
                     }
 
                     Text("Free to use · No account needed")
-                        .font(.footnote)
-                        .foregroundStyle(.white.opacity(0.55))
+                        .font(.caption)
+                        .foregroundStyle(Color(red: 0.5, green: 0.5, blue: 0.55))
                         .padding(.bottom, 32)
                 }
             }
@@ -97,15 +95,15 @@ private struct FeatureBullet: View {
     var body: some View {
         HStack(spacing: 14) {
             Image(systemName: icon)
-                .font(.system(size: 18, weight: .semibold))
-                .foregroundStyle(.white)
-                .frame(width: 36, height: 36)
-                .background(.white.opacity(0.15))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .font(.system(size: 16, weight: .regular))
+                .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.7))
+                .frame(width: 32, height: 32)
+                .background(Color.white)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
 
             Text(text)
-                .font(.subheadline)
-                .foregroundStyle(.white.opacity(0.9))
+                .font(.body)
+                .foregroundStyle(Color(red: 0.3, green: 0.3, blue: 0.35))
 
             Spacer()
         }

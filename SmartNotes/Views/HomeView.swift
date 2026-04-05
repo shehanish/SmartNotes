@@ -13,8 +13,8 @@ struct HomeView: View {
 
     var body: some View {
         ZStack {
-            // Dark background - same style as the design in the image
-            Color(red: 0.1, green: 0.1, blue: 0.15)
+            // Light blue background
+            Color(red: 0.92, green: 0.95, blue: 0.98)
                 .ignoresSafeArea()
 
             ScrollView {
@@ -23,25 +23,26 @@ struct HomeView: View {
                     // ── GREETING ROW ──────────────────────────────
                     HStack {
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("Good Evening 👋")
+                            Text("Good Evening")
                                 .font(.subheadline)
-                                .foregroundStyle(.white.opacity(0.6))
+                                .foregroundStyle(Color.gray)
                             Text("SmartNotes")
-                                .font(.title)
-                                .bold()
-                                .foregroundStyle(.white)
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(Color(red: 0.1, green: 0.1, blue: 0.15))
                         }
                         Spacer()
                         // Profile avatar circle
                         Circle()
-                            .fill(LinearGradient(
-                                colors: [.purple, .blue],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing))
+                            .fill(Color.white)
                             .frame(width: 44, height: 44)
                             .overlay(
                                 Image(systemName: "person.fill")
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.7))
+                            )
+                            .overlay(
+                                Circle()
+                                    .stroke(Color(red: 0.2, green: 0.4, blue: 0.7).opacity(0.2), lineWidth: 1)
                             )
                     }
                     .padding(.horizontal)
@@ -97,12 +98,12 @@ struct SectionHeaderView: View {
         HStack {
             Text(title)
                 .font(.headline)
-                .bold()
-                .foregroundStyle(.white)
+                .fontWeight(.semibold)
+                .foregroundStyle(Color(red: 0.1, green: 0.1, blue: 0.15))
             Spacer()
             Button("See All") { }
                 .font(.subheadline)
-                .foregroundStyle(.purple)
+                .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.7))
         }
         .padding(.horizontal)
     }

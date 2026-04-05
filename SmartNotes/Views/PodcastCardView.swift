@@ -15,41 +15,38 @@ struct PodcastCardView: View {
             
             //artwork box
             ZStack {
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(LinearGradient(
-                        colors: [.purple, .blue],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing))
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.white)
                     .frame(width: 70, height: 70)
                 Image(systemName: podcast.imageName)
                     .font(.system(size: 28))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.7))
                 
             }
             // Podcast info
             VStack(alignment: .leading, spacing: 4) {
                 Text(podcast.title)
                     .font(.headline)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color(red: 0.1, green: 0.1, blue: 0.15))
 
                 Text(podcast.author)
                     .font(.subheadline)
-                    .foregroundStyle(.white.opacity(0.6))
+                    .foregroundStyle(Color.gray)
 
                 Text("\(podcast.episodeCount) episodes")
                     .font(.caption)
-                    .foregroundStyle(.purple)
+                    .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.7))
             }
 
             Spacer()
 
             Image(systemName: "chevron.right")
-                .foregroundStyle(.white.opacity(0.4))
+                .foregroundStyle(Color.gray.opacity(0.5))
         }
         .padding()
-        .background(Color(red: 0.16, green: 0.16, blue: 0.22))
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-        .shadow(color: .black.opacity(0.3), radius: 8, x: 0, y: 4)
+        .background(Color.white)
+        .clipShape(RoundedRectangle(cornerRadius: 14))
+        .shadow(color: Color.black.opacity(0.08), radius: 6, x: 0, y: 2)
     }
 }
 
@@ -61,10 +58,10 @@ struct PodcastFeaturedCardView: View {
     // Each podcast gets a unique gradient colour pair
     private var gradientColors: [Color] {
         let options: [[Color]] = [
-            [.purple, .blue],
-            [.orange, .pink],
-            [.teal, .green],
-            [.indigo, .purple]
+            [Color(red: 0.95, green: 0.95, blue: 0.97), Color.white],
+            [Color(red: 0.9, green: 0.93, blue: 0.98), Color.white],
+            [Color(red: 0.92, green: 0.95, blue: 0.95), Color.white],
+            [Color(red: 0.97, green: 0.95, blue: 0.9), Color.white]
         ]
         let index = abs(podcast.title.hashValue) % options.count
         return options[index]
@@ -84,12 +81,12 @@ struct PodcastFeaturedCardView: View {
             // Centre icon
             Image(systemName: podcast.imageName)
                 .font(.system(size: 44))
-                .foregroundStyle(.white.opacity(0.35))
+                .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.7).opacity(0.25))
                 .frame(width: 160, height: 160)
 
-            // Dark gradient overlay so text is readable
+            // Subtle overlay
             LinearGradient(
-                colors: [.clear, .black.opacity(0.75)],
+                colors: [.clear, Color.black.opacity(0.05)],
                 startPoint: .center,
                 endPoint: .bottom)
             .clipShape(RoundedRectangle(cornerRadius: 16))
@@ -99,29 +96,30 @@ struct PodcastFeaturedCardView: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(podcast.title)
                     .font(.subheadline)
-                    .bold()
-                    .foregroundStyle(.white)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(Color(red: 0.1, green: 0.1, blue: 0.15))
                     .lineLimit(1)
 
                 Text(podcast.author)
                     .font(.caption2)
-                    .foregroundStyle(.white.opacity(0.75))
+                    .foregroundStyle(Color.gray)
                     .lineLimit(1)
             }
             .padding(10)
         }
         .frame(width: 160, height: 160)
+        .shadow(color: Color.black.opacity(0.06), radius: 6, x: 0, y: 2)
     }
 }
 
 #Preview {
     ZStack {
-        Color(red: 0.1, green: 0.1, blue: 0.15).ignoresSafeArea()
+        Color(red: 0.92, green: 0.95, blue: 0.98).ignoresSafeArea()
 
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 Text("Featured Cards")
-                    .foregroundStyle(.white).bold().padding(.horizontal)
+                    .foregroundStyle(Color(red: 0.1, green: 0.1, blue: 0.15)).bold().padding(.horizontal)
 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 14) {
@@ -133,7 +131,7 @@ struct PodcastFeaturedCardView: View {
                 }
 
                 Text("List Cards")
-                    .foregroundStyle(.white).bold().padding(.horizontal)
+                    .foregroundStyle(Color(red: 0.1, green: 0.1, blue: 0.15)).bold().padding(.horizontal)
 
                 VStack(spacing: 12) {
                     ForEach(Podcast.sampleData) { podcast in
@@ -146,4 +144,3 @@ struct PodcastFeaturedCardView: View {
         }
     }
 }
-
